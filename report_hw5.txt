@@ -1,0 +1,171 @@
+q1: 
+file nytcounts.university_cat_dog has contexts for 3 words
+Cosine similarity between cat and dog 0.966892
+Cosine similarity between cat and university 0.660442
+Cosine similarity between university and dog 0.65923
+
+explanation: By definition 2 words are similar if they occur in similar contexts. i.e, their context vectors are similar.
+And hence it makes sense that these words are similar or might be representing something similar due to the similarity of the contexts in which they are being used. Given that both are domestic animals/pets, it is likely that they were talked about in a similar context.
+
+q2: 
+file nytcounts.university_cat_dog has contexts for 3 words
+1: cat (0.966892)
+2: university (0.65923)
+
+explanation :  Cosine similarity between cat and dog 0.827517
+Cosine similarity between cat and university -0.205395
+Cosine similarity between university and dog -0.190753
+1: cat (0.827517)
+2: university (-0.190753)
+
+
+q3: 
+explanation: 
+name : michael
+[('the', 3.492182), ("''", 1.761532), ('a', 0.995682), ('and', 0.970193), ('peter', 0.853017), ('david', 0.8495), ('james', 0.846688), ('daniel', 0.838458), ('robert', 0.835893), ('william', 0.827908)]
+nearest :  the 
+
+For name, it is kind of expected to have a few other names that are used in a similar context. However, the cosine similarity finds that the word 'the' is also used in contexts similar to 'michael'. This makes sense statistically since 'the' is used in the beginning of the sentences and there are many words to the right of it very much similar to the 'michael' vector which has many words to its right. However, relation wise, it makes less sense here.
+
+common noun : woman
+[('the', 2.650161), ("''", 1.841074), ('he', 1.169231), ('and', 0.913963), ('ms.', 0.795098), ('mr.', 0.792771), ('dr.', 0.780025), ('a', 0.728955), ('torre', 0.718863), ('i', 0.706264)]
+nearest :  the 
+
+For a common noun like 'woman', it is again possible that 'the' which is used in the start of the sentence has many words to its right similar to the 'woman' vector, and also there are common words in the 2 contexts and hence the similarity. But does not define any relation between them specfically.
+
+adjective : large
+[('the', 1.238247), ('small', 0.973071), ('huge', 0.960097), ('brief', 0.95287), ('single', 0.942885), ('rare', 0.941019), ('strong', 0.938993), ('wonderful', 0.93542), ('sharp', 0.929999), ('lovely', 0.928291)]
+nearest :  the 
+
+This is again a statistical advantage for 'the' over other words. However, in this case, the second word 'small' makes more sense since it defines the antonym relation between the words and both of them are talked about in a similar context where quantity is being talked about.
+
+verb : injured
+[('wounded', 0.851522), ('killed', 0.780244), ('dead', 0.750265), ('missing', 0.725502), ('operation', 0.723451), ('crying', 0.720182), ('shot', 0.717361), ('arrested', 0.715403), ('wrong', 0.69604), ('said', 0.695451)]
+nearest :  wounded
+
+This makes a great example for the fact that the cosine similarity is very much capable of finding synonyms better than other relations. It is very much evident that 'wounded' and 'injured' have been used in a similar context with similar words to their right and left. Thus they are very much similar.
+
+q4: 
+Cosine similarity between cat and dog 0.827517
+Cosine similarity between cat and university -0.205395
+Cosine similarity between university and dog -0.190753
+1: cat (0.827517)
+2: university (-0.190753)
+
+explanation : By definition 2 words are similar if they occur in similar contexts. i.e, their context vectors are similar.
+And hence it makes sense that these words are similar or might be representing something similar due to the similarity of the contexts in which they are being used.Given that both are domestic animals/pets, it is likely that they were talked about in a similar context. 
+
+q5:
+name : michael
+[('david', 0.876732), ('stephen', 0.856039), ('daniel', 0.850073), ('peter', 0.846604), ('richard', 0.840486), ('steven', 0.831871), ('andrew', 0.827245), ('jonathan', 0.82575), ('alan', 0.824962), ('robert', 0.820249)]
+nearest :  david 
+
+This makes much better sense since both of the words represent people and all of the results consists of people.
+And of the people, 'david' seems to be word used in the same context as 'michael'.
+
+common noun : woman
+[('he', 0.851955), ("''she", 0.623711), ('it', 0.614699), ("''he", 0.572423), ('i', 0.565839), ('her', 0.543659), ('nobody', 0.54131), ('everyone', 0.531028), ('ms.', 0.527833), ('woman', 0.52453)]
+nearest :  he 
+
+This was the third closest match in the q3 example. However it makes more sense considering that it is a common pronoun and may have been mentioned in a similar context as the word 'woman'. most of the remaining entries are also pronouns which can be interchangeably used with the word 'woman'.
+
+adjective : large
+[('small', 0.872117), ('huge', 0.735052), ('vast', 0.727016), ('tiny', 0.621938), ('massive', 0.597101), ('broad', 0.592475), ('wide', 0.583895), ('smaller', 0.581751), ('big', 0.579674), ('significant', 0.563826)]
+nearest :  small 
+
+This was the second result in q3 and was more sensible and so, it makes sense that it is the first and the most similar word in this example as it defines the antonym relation between the words and both of them are talked about in a similar context where quantity is being talked about.
+
+verb : injured
+[('wounded', 0.79497), ('killed', 0.727386), ('arrested', 0.664529), ('fired', 0.651404), ('killing', 0.616705), ('dead', 0.611222), ('shooting', 0.602361), ('shot', 0.597411), ('accident', 0.594612), ('hitting', 0.576974)]
+nearest :  wounded 
+
+This result is similar to the one obtained in q3 and makes a great example for the fact that the cosine similarity is very much capable of finding synonyms better than other relations. It is very much evident that 'wounded' and 'injured' have been used in a similar context with similar words to their right and left. Thus they are very much similar.
+
+Overall, the dense vectors seem to have had a great impact on the precision and recall of the results.
+Thus it is more desirable to use them for the similarity purposes. 
+
+q6 
+king : man :: queen : woman 
+Everything looks ok! 
+
+explanation : This is possible since it can be thought of as subsituting the man features of the king with woman features and this vector would be very similar to that of the queen.
+
+q7 
+superlative 	[0.42857, 0.7619, 0.80952]
+city-in-state 	[0.33333, 0.61111, 0.83333]
+family 	[0.70513, 0.91026, 0.96795]
+adjective-to-adverb 	[0.01111, 0.12222, 0.22222]
+currency 	[0.1, 0.1, 0.1]
+nationality-adjective 	[0.45349, 0.74419, 0.87209]
+capital 	[0.08333, 0.58333, 0.75]
+comparative 	[0.53333, 0.7619, 0.8]
+
+incorrectly predicted analogy items(word3 in word1:word2::word3:word4) groupwise:
+
+group:  superlative
+ bad : worst :: good : greatest
+expected: great
+
+group:  city-in-state
+ houston : texas :: newark : washington
+expected: seattle
+
+group:  family
+ boy : girl :: sons : sisters
+expected: brothers
+
+group:  adjective-to-adverb
+ complete : completely :: regular : mostly
+expected: most
+
+group:  currency
+ brazil : real :: wins : won
+expected: korea  
+
+group:  nationality-adjective
+ china : chinese :: language : english
+expected: england
+ 
+group:  capital
+ baghdad : iraq :: queens : england
+expected: london  
+ 
+group:  comparative
+ bad : worse :: good : greater
+expected: great 
+
+explanation : It is clear from the table that the family(1best=0.7) and comparative(1best=0.5) relation groups did better than other groups. In the case of family there is a specific example that caught my attention:
+
+The "boy : girl :: brother : sister" relation was predicted correctly whereas "boy : girl :: brothers : sisters" relation was not predicted properly (sons). This was a close one but not accurate result. I have a theory that, the RHS in the second relation had plurals and hence the vector operation v1-v2+v4 did not yield an accurate difference and thus affecting the accuracy of the entire result. So, it is possible that the vectors that are being operated on can yield better results if they are more consistent in terms of plurality, tense and a few other factors that define the vectors.
+
+Another observation is that the relations with inflectional morphemes in the relations did better because the embeddings created similar patterns
+eg :  small : smaller :: strong : stronger was identified correctly for the group "comparative"
+Thus the comparative relation did farely well(1best=0.5) since it involved the words derived from the same stem(small & smaller have same stem while strong & stronger have same stem). Superlative did relatively lesser(1best=0.4) because the words differed in their stems 
+eg: bad : worst :: great : greatest (bad & worst had different stems)
+
+q8
+next-month
+ january : february :: march : april
+ may : june :: might : august
+ september : october :: november : december
+
+antonyms
+ truth : lie :: clearly : serious
+ love : hate :: joy : sad
+ cry : laugh :: thus : ugly
+
+
+ stats of 1best,5best and 10best
+next-month 	[0.66667, 0.66667, 0.66667]
+antonyms 	[0.33333, 0.33333, 0.33333]
+
+explanation : In the first relation group "next-month", 2 out of the 3 examples were identified correctly.
+This goes to show that linear relations do better. Also, it seems like the 1-best result is the best result since it is repeated in the 5-best and 10-best. This means either there is a definite match or no match at all.
+
+In the second relation group "antonyms", 1 example was predicted correctly.
+The synonyms relation does better in comparison to an antonym relation because the 2 vectors are used in a completely different context and hence they are less similar.
+
+
+
+
+
